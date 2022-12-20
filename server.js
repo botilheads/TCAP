@@ -14,7 +14,7 @@ const routes = require('./routes/api')
 
 // Connect MongoDB
 const connectDB = require('./config/db');
-connectDB();
+//connectDB();
 
 // Data parsing
 app.use(express.json());
@@ -43,4 +43,13 @@ app.get("*", function (_, res) {
 app.use(morgan('tiny'))
 app.use('/api',routes)
 
-app.listen(PORT, console.log(`Server has started at port ${PORT}`))
+//app.listen(PORT, console.log(`Server has started at port ${PORT}`))
+
+app.listen(PORT, async () => {
+  try {
+    await connectDB();
+    console.log(`Listening at ${PORT}`);
+  } catch (e) {
+    console.log(e.message);
+  }
+});
