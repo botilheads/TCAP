@@ -45,11 +45,9 @@ app.use('/api',routes)
 
 //app.listen(PORT, console.log(`Server has started at port ${PORT}`))
 
-app.listen(PORT, async () => {
-  try {
-    await connectDB();
-    console.log(`Listening at ${PORT}`);
-  } catch (e) {
-    console.log(e.message);
-  }
-});
+//Connect to the database before listening
+connectDB().then(() => {
+  app.listen(PORT, () => {
+      console.log("listening for requests");
+  })
+})
