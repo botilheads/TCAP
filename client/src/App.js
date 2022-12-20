@@ -16,7 +16,7 @@ class App extends React.Component {
 
 
   getBlogPost = () => {
-    axios.get('/api')
+    axios.get('/')
       .then((response) => {
         const data = response.data;
         this.setState({ posts: data });
@@ -43,7 +43,7 @@ class App extends React.Component {
 
 
     axios({
-      url: '/api/save',
+      url: '/save',
       method: 'POST',
       data: payload
     })
